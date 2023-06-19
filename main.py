@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 from dataset import Dataset
 from model import scGREAT
 from train_val import train,validate
-from utils import EarlyStopping
+
 
 def main(data_dir, args):
     # data_dir = 'hESC500'
