@@ -8,7 +8,7 @@ class Dataset(torch.utils.data.Dataset):
         
         self.dataset = np.array(data.iloc[:,:2])
         label = np.array(data.iloc[:,-1])
-        self.label = np.eye(2)[label]  # one_hot  这里对label进行了one_hot处理 第一维度是label0  第二维度是 label1
+        self.label = np.eye(2)[label]  
         self.label = label
         self.expression_data = expression_data
     def __len__(self):
