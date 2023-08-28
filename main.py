@@ -64,7 +64,7 @@ def main(data_dir, args):
 
     T = scGREAT(expression_data_shape,Embed_size,Num_layers,Num_head,biovect_e_path)
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    T.to(device)
+    T = T.to(device)
     optimizer = torch.optim.Adam(T.parameters(), lr=LR)
     scheduler = StepLR(optimizer, step_size=step_size, gamma=gamma)
     loss_func = nn.BCELoss() 

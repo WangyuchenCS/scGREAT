@@ -44,8 +44,10 @@ class scGREAT(nn.Module):
     def forward(self, gene_pair_index,expr_embedding): 
         bs = expr_embedding.shape[0]
         position = torch.Tensor([0,1]*bs).reshape(bs,-1).to(torch.int32)
-        position.to(self.device)
+        position = position.to(self.device)
         p_e = self.position_embedding(position)
+        expr_embedding = expr_embedding.to(self.device)
+        gene_pair_index = gene_pair_index.to(self.device)
     
         out_expr_e = self.encoder512(expr_embedding)
         out_expr_e = F.leaky_relu(self.encoder768(out_expr_e)) 

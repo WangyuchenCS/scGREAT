@@ -3,6 +3,7 @@ import torch
 from utils import Evaluation
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# print(device)
 
 
 def train(model,dataloader,loss_func,optimizer,epoch,scheduler,args):
@@ -11,12 +12,12 @@ def train(model,dataloader,loss_func,optimizer,epoch,scheduler,args):
     total_loss = 0
 
     for idx, (gene_pair_index,expr_embedding,label) in enumerate(dataloader):
-
+        label = label.to(device)
+        gene_pair_index = gene_pair_index.to(device)
         expr_embedding = expr_embedding.to(torch.float32)
-        label.to(device)
-        gene_pair_index.to(device)
-        expr_embedding.to(device)
+        expr_embedding = expr_embedding.to(device)
         optimizer.zero_grad()
+
         predicted_label = model(gene_pair_index,expr_embedding)
         loss = loss_func(predicted_label.squeeze(), label.float())
         total_loss += loss
