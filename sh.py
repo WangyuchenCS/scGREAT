@@ -3,7 +3,7 @@
 import subprocess
 
 def get_embedding_sh(net_type_i,data_type_i):
-    script_path = "/biobert-pytorch/embedding/getbiovec.sh"  # 
+    script_path = "/biobert-pytorch/embedding/getbiovec.sh"  # The code in getbiovec.sh disclosed in https://github.com/dmis-lab/biobert-pytorch/tree/master/embedding
     # Use the subprocess.run method to execute shell scripts, !!!!!
     # or use "bash" on terminal command line to run shell scripts !!!!
     result = subprocess.run(["bash", script_path, net_type_i, data_type_i], capture_output=True, text=True)
